@@ -1,0 +1,126 @@
+const prompt = require("prompt-sync")();
+console.clear();
+
+//História 
+console.log('Anúncio "Padrão Fifa"');
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log('Joaquim criou uma técnica para criação de anúncios para o marketplace...')
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("E ele decidiu revelar essa técnica secreta para você!...")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("Você está pronto para continuar?")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("1º Passo é a criação da imagem, com o fundo branco no tamanho 1200x1200")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("2º Passo é a criação do título do anúncio, você precisa realizar uma pesquisa")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("De palavras chaves mais usadas, para isso você pode usar a ferramenta 'têndencias do Mercado Livre")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("3º Passo é a Descrição do seu anúncio, ela precisa ser bem completa para o cliente saber o que ele estará comprando")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("4º Passo é a precificação, você precisa tomar CUIDADO aqui, pois o aqui é onde você terá seu lucro")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("5º Passo é a REPUTACAO, sua conta precisa estar com o termômetro no verde, para alavancar suas vendas!")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log("Agora é a hora de descobrir, se o seu anúncio se encaixa no 'PADRÃO FIFA DE VENDAS'")
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+console.log('Por favor responda com Sim ou Não');
+prompt("Pressione ENTER para continuar...");
+console.clear();
+
+// Perguntas 
+
+let q1 = prompt("Você criou imagem com fundo branco e tamanho 1200x1200? Sim ou Não: ").toLowerCase();
+console.clear();
+while (q1 != "sim" && q1 != "nao") {
+    console.log("Por favor, responda com SIM ou NAO!");
+    q1 = prompt("Você criou imagem com fundo branco e tamanho 1200x1200? Sim ou Não: ").toLowerCase();
+    console.clear();
+}
+
+let q2 = prompt("Você criou o título utilizando as palavras chaves mais usadas? Sim ou Não: ").toLowerCase();
+console.clear();
+while (q2 != "sim" && q2 != "nao") {
+    console.log("Por favor, responda com SIM ou NAO!");
+    q2 = prompt("Você criou o título utilizando as palavras chaves mais usadas? Sim ou Não: ").toLowerCase();
+    console.clear();
+}
+
+let q3 = prompt("Você criou uma descrição completa? Sim ou Não: ").toLowerCase();
+console.clear();
+while (q3 != "sim" && q3 != "nao"){
+    console.log("Por favor, responda com SIM ou NAO!");
+    q3 = prompt("Você criou uma descrição completa? Sim ou Não: ").toLowerCase();
+    console.clear();
+}
+
+let q4 = prompt("Você precificou corretamente seu anúncio? Sim ou Não: ").toLowerCase();
+console.clear();
+while (q4 != "sim" && q4 != "nao") {
+    console.log("Por favor, responda com SIM ou NAO!");
+    q4 = prompt("Você criou uma descrição completa? Sim ou Não: ").toLowerCase();
+    console.clear();
+}
+
+let q5 = prompt("Você está com sua reputação no termômetro no verde? Sim ou Não: ").toLowerCase();
+console.clear();
+while (q5 != "sim" && q5 != "nao"){
+    console.log("Por favor, responda com SIM ou NAO!");
+    q5 = prompt("Você está com sua reputação no termômetro no verde? Sim ou Não: ").toLowerCase();
+    console.clear();
+}
+let soma = 0;
+
+console.log();
+
+if (q1 == "sim") {
+   soma += 1;
+ }
+ if (q2 == "sim") {
+   soma += 1;
+ }
+ if (q3 == "sim") {
+   soma += 1;
+ }
+ if (q4 == "sim") {
+   soma += 1;
+ }
+ if (q5 == "sim") {
+   soma += 1;
+ }
+ 
+ if (soma == 5){
+    console.log("PARABÉNS VOCÊ CONSEGUIU CONSQUISTAR O ANÚNCIO 'PADRÃO FIFA'");
+ }else if (soma == 4){
+    console.log("VOCÊ ESTÁ QUASE LÁ AMIGO, MAS AINDA FALTA UM PASSO PARA O ANÚNCIO ESTAR DENTRO DO 'PADRAO FIFA''");
+ }else if (soma ==3){
+    console.log("VOCÊ ESTÁ PERTO, MAS AINDA PRECISA REALIZAR TODOS OS PASSOS!'");
+ }else if (soma == 1 || soma == 2){
+    console.log("VOCÊ FALHOU, VOCÊ NÃO APLICOU TODOS OS PASSOS ");
+ }else {
+    console.log("VOCÊ FALHOU, VOCÊ NÃO CONSEGUIU COMPLETAR A MISSÃO!");
+ }
+
+ 

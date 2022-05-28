@@ -1,0 +1,46 @@
+const prompt = require("prompt-sync")();
+console.clear();
+
+//este jogo deve funcionar da seguinte forma:
+//O programa deve fazer 5 perguntas ao usuario com respostas de sim ou não
+//Caso o usuario responda sim a 4 perguntas ou mais, devemos retornar que ele é culpado
+//Caso o usuario responda sim a 3 perguntas, devemos retornar que ele é suspeito
+//Caso o usuario responda sim a 2 perguntas ou menos, devemos retornar que ele é inocente
+//Criterios de aceitação:
+//Precisa retornar resposta para todas as possibilidades de culpado,suspeito ou inocente.
+//Precisa ter condicionais.
+
+// Perguntas 
+let per1 = prompt("Telefonou para a vítima? Sim ou Não: ").toLowerCase();
+let per2 = prompt("Esteve no local do crime? Sim ou Não: ").toLowerCase();
+let per3 = prompt("Mora perto da vítima? Sim ou Não: ").toLowerCase();
+let per4 = prompt("Devia para a vítima? Sim ou Não: ").toLowerCase();
+let per5 = prompt("Já trabalhou com a vítima? Sim ou Não: ").toLowerCase();
+
+//Variável Pontuação
+let soma = 0;
+
+// Contagem do placar
+if (per1 == "sim") {
+    soma += 1;
+  }
+  if (per2 == "sim") {
+    soma += 1;
+  }
+  if (per3 == "sim") {
+    soma += 1;
+  }
+  if (per4 == "sim") {
+    soma += 1;
+  }
+  if (per5 == "sim") {
+    soma += 1;
+  }
+
+if (soma >= 4 ){
+  console.log("Você é CULPADO")
+} else if (soma == 3 ){
+  console.log("Você é SUSPEITO")
+} else{
+  console.log("Você é INOCENTE")
+}

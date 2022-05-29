@@ -22,11 +22,8 @@ console.log("1º Passo é a criação da imagem, com o fundo branco no tamanho 1
 prompt("Pressione ENTER para continuar...");
 console.clear();
 
-console.log("2º Passo é a criação do título do anúncio, você precisa realizar uma pesquisa")
-prompt("Pressione ENTER para continuar...");
-console.clear();
-
-console.log("De palavras chaves mais usadas, para isso você pode usar a ferramenta 'têndencias do Mercado Livre")
+console.log(`2º Passo é a criação do título do anúncio, você precisa realizar uma pesquisa de palavras chaves mais usadas
+Para isso você pode usar a ferramenta 'têndencias do Mercado Livre`)
 prompt("Pressione ENTER para continuar...");
 console.clear();
 
@@ -46,7 +43,7 @@ console.log("Agora é a hora de descobrir, se o seu anúncio se encaixa no 'PADR
 prompt("Pressione ENTER para continuar...");
 console.clear();
 
-console.log('Por favor responda com Sim ou Não');
+console.log("Por favor responda com Sim ou Não");
 prompt("Pressione ENTER para continuar...");
 console.clear();
 
@@ -122,5 +119,5 @@ if (q1 == "sim") {
  }else {
     console.log("VOCÊ FALHOU, VOCÊ NÃO CONSEGUIU COMPLETAR A MISSÃO!");
  }
-
+ console.log();
  

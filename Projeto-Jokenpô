@@ -1,0 +1,156 @@
+console.clear();
+const prompt = require("prompt-sync")();
+
+
+let verificador = true;
+    while (verificador){
+    // Placar jogadores
+    let placarUser = 0;
+    let placarCpu = 0;
+    
+    console.log("##### BEM VINDO AO JOKENPÔ #####")
+    console.log();
+    // #1 - Quantidade de rodadas 
+    let rodadas = +prompt("Quantas rodadas você deseja? ");
+    console.clear();
+
+    while (rodadas){
+
+        // Array lista de opções
+        let lista = ["Pedra","Papel","Tesoura"];
+
+        // #3 - Variaveis usuario e computador 
+        let user;
+        let cpu = lista[Math.floor(Math.random()*lista.length)];
+
+        // Opções de escolha 
+        console.log(
+        `### Escolha uma opção abaixo: ###
+    [1] Para Pedra
+    [2] Para Papel
+    [3] Para Tesoura `
+        );
+
+        // #2 - Resposta do usuário 
+        console.log();
+        user = +prompt("Qual é sua escolha? ");
+        console.clear();
+        
+        //Validacao resposta do usuario 
+        while (isNaN(user)|| user != 1 && user != 2 && user != 3){
+            console.log("Escolha Errada!");
+            console.log();
+            console.log(
+            `### Escolha uma opção abaixo: ###
+        [1] Para Pedra
+        [2] Para Papel
+        [3] Para Tesoura `
+
+        );
+            user = +prompt("Qual é sua escolha? ");
+            console.log();
+            console.clear();
+        }
+        // Escolhas dos jogadores
+        if (user == 1){
+            console.log("### Escolha Jogador ###");
+            console.log("O Jogador escolheu: Pedra");
+            console.log();
+        } else if (user == 2){
+            console.log("### Escolha Jogador ###");
+            console.log("O Jogador escolheu: Papel");
+            console.log();
+        } else {
+            console.log("### Escolha Jogador ###");
+            console.log("O Jogador escolheu: Tesoura");
+            console.log();
+        }
+        console.log("### Escolha Computador ###");
+        console.log("O Computador escolheu:", cpu);
+        console.log();
+
+        // Resultados jogadores
+        if (user == 1 && cpu == "Tesoura"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você venceu!");
+            console.log();
+            placarUser++;
+        } else if (user == 2 && cpu == "Pedra"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você venceu!");
+            console.log();
+            placarUser++;
+        } else if (user == 3 && cpu == "Papel"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você venceu!");
+            console.log();
+            placarUser++;
+        } else if (user == 1 && cpu == "Papel"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você perdeu!");
+            console.log();
+            placarCpu++;
+        } else if (user == 2 && cpu == "Tesoura"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você perdeu!");
+            console.log();
+            placarCpu++;
+        } else if (user == 3 && cpu == "Pedra"){
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você perdeu!");
+            console.log();
+            placarCpu++;
+        } else {
+            console.log("### Resultado Rodada ###");
+            console.log();
+            console.log("Você empatou!");
+            console.log();
+        }
+        rodadas--;
+    }
+
+    // Quem foi o campeão?
+    if (placarUser > placarCpu){
+        console.log("### Placar Final ###");
+        console.log();
+        console.log("O jogador foi o campeão! ");
+        console.log();
+        console.log("Placar Jogador:", placarUser);
+        console.log("Placar Computador: ", placarCpu);
+    }else if (placarUser < placarCpu){
+        console.log("### Placar Final ###");
+        console.log();
+        console.log("O computador foi o campeão! ");
+        console.log();
+        console.log("Placar Computador: ", placarCpu);
+        console.log("Placar Jogador:", placarUser);
+    }else {
+        console.log("### Placar Final ###");
+        console.log();
+        console.log("O jogo terminou empatado! ");
+        console.log();
+        console.log("Placar Jogador:", placarUser);
+        console.log("Placar Computador: ", placarCpu);
+    }
+    console.log();
+    console.log("Deseja jogar novamente? ");
+    console.log("[1] Sim ou [2] Não ");
+
+    let finalizar = +prompt(": ");
+    while(finalizar != 1 && finalizar !=2){
+        console.log("opção invalida! ");
+        console.log("Deseja jogar novamente? ");
+        console.log("[1] Sim ou [2] Não ");
+        finalizar = +prompt(": ");
+    }
+    console.clear();
+    if (finalizar == 2)
+        verificador = false
+    // finalizar == 2 ? verificador = false : verificador = true;
+}

@@ -8,8 +8,20 @@ let verificador = true;
     let placarUser = 0;
     let placarCpu = 0;
     
-    console.log("##### BEM VINDO AO JOKENPÔ #####")
+    console.log("##### BEM VINDO AO JOKENPÔ #####");
     console.log();
+    console.log("#### Regras do jogo ####");
+    console.log();
+    console.log(`O Jokenpô é o popular jogo do "pedra, papel e tesoura". A premissa é simples
+você tem 3 elementos para escolher, e cada um deles vence de um, e perde para o outro`)
+    console.log(`
+# Pedra ganha da tesoura, mas perde para o papel;
+# Tesoura ganha do papel, mas perde para a pedra;
+# Papel ganha da pedra, mas perde para a tesoura.`);
+    console.log();
+    prompt("Tecle enter para continuar...");
+    console.log();
+    console.clear();
     // #1 - Quantidade de rodadas 
     let rodadas = +prompt("Quantas rodadas você deseja? ");
     console.clear();
@@ -154,3 +166,4 @@ let verificador = true;
         verificador = false
     // finalizar == 2 ? verificador = false : verificador = true;
 }
+

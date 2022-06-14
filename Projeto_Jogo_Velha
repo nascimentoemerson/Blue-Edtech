@@ -1,0 +1,329 @@
+console.clear();
+const prompt = require("prompt-sync")();
+
+let tabuleiro = [["1","2","3"],["4","5","6"],["7","8","9"]];
+let escJog1;
+let jogador = ["X","O"];
+let contador = 0;
+let placarJog1 = 0;
+let placarJog2 = 0;
+let verificador = true;
+
+inicio();
+
+while(verificador){
+    let rodadas = +prompt("Quantas rodadas você deseja jogar? ");
+    let veriGanh;
+    placarJog1 = 0;
+    placarJog2 = 0;
+    while(rodadas > 0){
+        console.clear();
+        console.table(tabuleiro);
+        marcarPos1(jogador,contador);
+        console.clear();
+        console.table(tabuleiro);
+        contador++
+        veriGanh = verificaGanhador();
+        if(veriGanh){
+            prompt("Pressione [ENTER] para continuar... ");
+            console.log();
+            tabuleiro = [["1","2","3"],["4","5","6"],["7","8","9"]];
+            rodadas--
+        }
+    }
+    resultadoFinal(placarJog1,placarJog2);
+    jogarNovamente();
+    console.clear();
+};
+
+function inicio(){
+    console.log("### BEM VINDO AO JOGO DA VELHA ###");
+    console.log();
+    console.log("Os jogadores devem escolher um número entre 1 e 9 para marcar sua posição X ou O...");
+    console.log();
+    prompt("Pressione [ENTER] para continuar...");
+    console.log();
+};
+
+function marcarPos1(jogador,contador){
+    let controle; 
+    let trocaJog = true;
+    let jog = "";
+    if (contador % 2 == 0){
+        controle = 0;
+        jog = "X";
+    }else {
+        controle = 1;
+        jog = "O";
+    }
+    escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+    while(trocaJog){
+        if(escJog1 < 1 || escJog1 > 9){
+            console.log();
+            console.log("Opção inválida \nEscolha um número entre 1 e 9 para marcar sua posição X ou O...");
+            console.log();
+            escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+        }
+        if(escJog1 == "1"){
+            if(tabuleiro[0][0] != "1"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[0].splice(0,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "2"){
+            if(tabuleiro[0][1] != "2"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[0].splice(1,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "3"){
+            if(tabuleiro[0][2] != "3"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[0].splice(2,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "4"){
+            if(tabuleiro[1][0] != "4"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[1].splice(0,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "5"){
+            if(tabuleiro[1][1] != "5"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[1].splice(1,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "6"){
+            if(tabuleiro[1][2] != "6"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[1].splice(2,1,jogador[controle]);
+                trocaJog = false;
+            }
+            
+        }if(escJog1 == "7"){
+            if(tabuleiro[2][0] != "7"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[2].splice(0,1,jogador[controle]);
+                trocaJog = false;
+            }
+    
+        }if(escJog1 == "8"){
+            if(tabuleiro[2][1] != "8"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[2].splice(1,1,jogador[controle]);
+                trocaJog = false;
+            }
+            
+        }if(escJog1 == "9"){
+            if(tabuleiro[2][2] != "9"){
+                console.log("Espaço ocupado!");
+                escJog1 = prompt(`Jogador ${jog} faça sua jogada:`);
+            }else {
+                tabuleiro[2].splice(2,1,jogador[controle]);
+                trocaJog = false;
+            }
+            
+        }
+    }
+};
+
+function verificaGanhador(){
+    /// JOGADOR 1 RESULTADO
+
+    //linha 0
+    if(tabuleiro[0][0] == "X" && tabuleiro[0][1] == "X" && tabuleiro[0][2] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+
+    // linha 1
+    }else if(tabuleiro[1][0] == "X" && tabuleiro[1][1] == "X" && tabuleiro[1][2] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+
+    // linha 2
+    }else if(tabuleiro[2][0] == "X" && tabuleiro[2][1] == "X" && tabuleiro[2][2] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+
+    // coluna 0
+    }else if(tabuleiro[0][0] == "X" && tabuleiro[1][0] == "X" && tabuleiro[2][0] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++
+        return true;
+
+    // coluna 1    
+    }else if(tabuleiro[0][1] == "X" && tabuleiro[1][1] == "X" && tabuleiro[2][1] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+     
+    // coluna 2
+    }else if(tabuleiro[0][2] == "X" && tabuleiro[1][2] == "X" && tabuleiro[2][2] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+
+    // diagonal 1    
+    }else if(tabuleiro[0][0] == "X" && tabuleiro[1][1] == "X" && tabuleiro[2][2] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++;
+        return true;
+
+    // diagonal 2    
+    }else if(tabuleiro[0][2] == "X" && tabuleiro[1][1] == "X" && tabuleiro[2][0] == "X"){
+        console.log("Jogador 1 venceu a rodada");
+        console.log();
+        placarJog1++
+        return true;
+    }else {
+        let velha = 0;
+        for(let i = 0; i < tabuleiro.length; i++){
+            tabuleiro[i].forEach(item => {
+                if(!(item == "X" || item == "O")){
+                    velha++;
+                }
+            })
+        }
+        if(velha == 0){
+            console.log("DEU VELHA! ");
+            console.log();
+            return true;
+        }
+    }
+
+    /// JOGADOR 2 RESULTADO
+
+    // linha 0   
+    if(tabuleiro[0][0] == "O" && tabuleiro[0][1] == "O" && tabuleiro[0][2] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // linha 1
+    }else if(tabuleiro[1][0] == "O" && tabuleiro[1][1] == "O" && tabuleiro[1][2] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // linha 2
+    }else if(tabuleiro[2][0] == "O" && tabuleiro[2][1] == "O" && tabuleiro[2][2] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // coluna 0
+    }else if(tabuleiro[0][0] == "O" && tabuleiro[1][0] == "O" && tabuleiro[2][0] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // coluna 1    
+    }else if(tabuleiro[0][1] == "O" && tabuleiro[1][1] == "O" && tabuleiro[2][1] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // coluna 2
+    }else if(tabuleiro[0][2] == "O" && tabuleiro[1][2] == "O" && tabuleiro[2][2] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // diagonal 1    
+    }else if(tabuleiro[0][0] == "O" && tabuleiro[1][1] == "O" && tabuleiro[2][2] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+
+    // diagonal 2    
+    }else if(tabuleiro[0][2] == "O" && tabuleiro[1][1] == "O" && tabuleiro[2][0] == "O"){
+        console.log("Jogador 2 venceu a rodada");
+        console.log();
+        placarJog2++;
+        return true;
+    }else {
+        return false;
+    };
+
+};
+
+function resultadoFinal(placarJog1,placarJog2){
+    if(placarJog1 > placarJog2){
+        console.log("o Jogador 1 foi o campeão");
+        console.log();
+        console.log("Placar jogador 1: ", placarJog1);
+        console.log("Placar jogador 2: ", placarJog2);
+    }else if(placarJog2 > placarJog1){
+        console.log("o Jogador 2 foi o campeão");
+        console.log();
+        console.log("Placar jogador 2: ", placarJog2);
+        console.log("Placar jogador 1: ", placarJog1);
+    }else {
+        console.log("O jogo terminou empatado!");
+        console.log();
+        console.log("Placar jogador 2: ", placarJog2);
+        console.log("Placar jogador 1: ", placarJog1);
+    }
+};
+
+function jogarNovamente(){
+    console.log();
+    console.log("Deseja jogar novamente? ");
+    console.log("[1] Sim ou [2] Não ");
+    let finalizar = +prompt(": ");
+    while(finalizar != 1 && finalizar !=2){
+        console.log("opção invalida! ");
+        console.log("Deseja jogar novamente? ");
+        console.log("[1] Sim ou [2] Não ");
+        finalizar = +prompt(": ");
+    }
+    if (finalizar == 2){
+        verificador = false;
+    };
+};
+
+
+
+
+
+
+

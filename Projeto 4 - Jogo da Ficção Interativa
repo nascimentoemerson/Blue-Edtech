@@ -1,0 +1,456 @@
+console.clear();
+const prompt = require("prompt-sync")();
+
+let cena1 = {
+    caixa1: ["Pão","15","Lanterna"],
+};
+
+let cena2 = {
+    caixa1: ["bolsa de sangue","23","Canivete"]
+};
+
+let cena3 = {
+    caixa1: ["Maça","Chave","59"],
+};
+
+let personagem = {
+    nome: "",
+    inventario: [],
+    energia: 0, 
+    vida: 50,
+    senhas: [[],[],[]],
+    tempo: 60,
+
+    food: function(){
+        this.energia = this.energia + 50;
+        if(this.energia >= 100){
+            console.log(`${personagem.nome} sua energia está completa!`)
+            if(this.energia <= 60){
+            console.log(`${personagem.nome} sua energia está quase completa!`)
+            };
+        };
+    },
+    recuperarVida: function(){
+        this.vida = this.vida + 50;
+        if(this.vida == 100){
+            console.log(`${personagem.nome} sua vida foi aumentada! `);
+        };
+    },
+    senhaIncorreta: function(){
+        this.tempo = this.tempo -= 5;
+        console.log(`${personagem.nome}, Restam apenas ${personagem.tempo} minutos, para você escapar!`)
+        console.log();
+    },
+    gastarEnergia: function(){
+        this.energia = this.energia -= 50;
+        if(this.energia <= 0){
+            console.log("Você está sem energia, ache uma comida para continuar...");
+            console.log();
+        };
+    },
+    passarc1: function(){
+        this.tempo = this.tempo -= 15;
+        if(this.tempo){
+            console.log(`${personagem.nome}, Restam apenas ${this.tempo} minutos para você escapar!`);
+        };
+    },
+    passarc2: function(){
+        this.tempo = this.tempo -= 15;
+        if(this.tempo){
+            console.log(`${personagem.nome}, Restam apenas ${this.tempo} minutos para você escapar!`);
+        };
+    },
+    passarc3: function(){
+        this.tempo = this.tempo -= 15;
+        if(this.tempo){
+            console.log(`${personagem.nome}, Restam apenas ${this.tempo} minutos para você escapar!`);
+        };
+    },
+};
+
+let controle = true
+let port1 = 0;
+let port2 = 0;
+let contador = 0
+let escolha ;
+let abrirCx ;
+let inven ;
+let verSenha = [[23],[15],[59]]
+let senha = [[],[],[]]
+let digSenha = 0;
+
+console.log("### ESCAPE ROOM ###");
+console.log();
+prompt("Pressione [ENTER] para continuar... ");
+console.clear();
+prompt("Você foi sequestrado por um psicopata, que te deixou preso em um sala...");
+console.clear();
+prompt("E você ficou desacordado durante 3 dias...");
+console.clear();
+prompt("Você acorda assustado sem saber o que aconteceu...");
+console.clear();
+prompt("Você está ferido e com fome. você precisa sair deste lugar ou você irá morrer...");
+console.clear();
+personagem.nome = prompt("Digite seu nome: ")
+console.clear();
+console.log("Bem vindo ao ESCAPE ROOM, você precisa escapar da sala para sobreviver... ");
+console.log();
+console.log("Nome: ",personagem.nome);
+console.log("Inventário: ",personagem.inventario);
+console.log("Energia: ",personagem.energia);
+console.log("Vida: ",personagem.vida);
+console.log("Senhas: ",personagem.senhas);
+console.log("Tempo: ",personagem.tempo, "Minutos");
+console.log();
+prompt("Você esta em um sala vazia, onde existe duas portas para você entrar...\n\n[ENTER]")
+console.log();
+console.clear();
+
+controle: while(controle){
+    if(port1 >= 1 && port2 >= 1){
+        console.log("3º PORTA LIBERADA!");
+        prompt("PRESSIONE [ENTER]...");
+        console.log();
+        console.clear();
+        console.log("Qual porta você deseja entrar?")
+        console.log("[1] Porta ou [2] Porta ou [3] Porta ")
+        console.log();
+        escolha = +prompt("Faça sua escolha: ");
+    
+        while(escolha != 1 && escolha != 2 && escolha != 3){
+            console.clear();
+            console.log("Opção invalida, escolha um porta!");
+            console.log();
+            console.log("Qual porta você deseja entrar?")
+            console.log();
+            console.log("[1] Porta ou [2] Porta ou [3] Porta ")
+            console.log();
+            escolha = +prompt("Faça sua escolha: ");
+        };
+    }else {
+        console.log("Qual porta você deseja entrar?")
+        console.log("[1] Porta ou [2] Porta ")
+        console.log();
+        escolha = +prompt("Faça sua escolha: ");
+    
+        while(escolha != 1 && escolha != 2){
+            console.clear();
+            console.log("Opção invalida, escolha um porta!");
+            console.log();
+            console.log("Qual porta você deseja entrar?")
+            console.log();
+            console.log("[1] Porta ou [2] Porta ")
+            console.log();
+            escolha = +prompt("Faça sua escolha: ");
+        };
+    }
+    console.clear();
+    switch(escolha){
+        
+        case 1:
+        if(port1 == 1 ){
+            console.log("Você ja entrou nessa porta!")
+            prompt("[ENTER]");
+            console.clear();
+            continue controle
+        };
+        prompt("Você acaba de entrar na 1º Porta...")
+        console.clear();
+        prompt("Dentro da sala você acaba de encontrar uma caixa...");
+        console.clear();
+        console.log("Você deseja abrir a caixa?");
+        console.log("[1] Sim ou [2] Não ?")
+        console.log();
+        abrirCx = +prompt("Faça sua escolha: ");
+        console.clear();
+        if(abrirCx != 1 && abrirCx != 2){
+            console.log("Opção invalida, escolha uma opção! ");
+            console.log();
+            console.log("Você deseja abrir a caixa?");
+            console.log("[1] Sim ou [2] Não ?")
+            console.log();
+            abrirCx = +prompt("Faça sua escolha: ");
+            console.clear();
+        };
+        if(abrirCx == 1){
+            console.log(`Você acaba de encontrar um ${cena1.caixa1[0]}, uma ${cena1.caixa1[2]} e um papel com uma senha anotada...`)
+            console.log();
+            console.log("Você quer adicionar ao seu inventário?  ");
+            console.log("[1] Sim ou [2] Não ?")
+            console.log();
+            inven = +prompt("Faça sua escolha: ");
+            console.clear();
+
+            if(inven != 1 && inven != 2){
+                console.log("Opção invalida, escolha uma opção! ");
+                console.log();
+                console.log("Você quer adicionar ao seu inventário?  ");
+                console.log("[1] Sim ou [2] Não ?")
+                console.log();
+                inven = +prompt("Faça sua escolha: ");
+                console.clear();
+            };
+            if(inven == 1){
+                personagem.inventario.splice(1,1,cena1.caixa1[2]);
+                console.log(`Você acaba de comer o ${cena1.caixa1[0]}`);
+                console.log();
+                personagem.food();
+                console.log(`Sua energia foi aumentada: ${personagem.energia}`);
+                personagem.senhas.splice(0,1,cena1.caixa1[1]);
+                console.log();
+                console.log("Os itens foram adicionados ao seu inventário!")
+                console.log();
+                personagem.passarc1();
+                console.log();
+                console.log("Nome: ",personagem.nome);
+                console.log("Inventário: ",personagem.inventario);
+                console.log("Energia: ",personagem.energia);
+                console.log("Vida: ",personagem.vida);
+                console.log("Senhas: ",personagem.senhas);
+                console.log("Tempo: ",personagem.tempo, "Minutos");
+                console.log();
+                contador++;
+                port1++;
+                continue controle
+            };
+        }else if (abrirCx == 2){
+            prompt("Você precisa encontrar todos os itens para liberar a sala secreta! ")
+            console.log();
+            console.log("Você voltou para o inicio!");
+            console.log();
+            prompt("PRESSIONE [ENTER]");
+            continue controle
+        };
+        case 2:
+            if(port2 == 1 ){
+                console.log("Você ja entrou nessa porta!")
+                prompt("[ENTER]");
+                console.clear();
+                continue controle
+            };
+            prompt("Você acaba de entrar na 2º Porta...")
+            console.clear();
+            prompt("Dentro da sala você acaba de encontrar uma caixa...");
+            console.clear();
+            console.log("Você deseja abrir a caixa?");
+            console.log("[1] Sim ou [2] Não ?")
+            console.log();
+            abrirCx = +prompt("Faça sua escolha: ");
+            console.clear();
+            if(abrirCx != 1 && abrirCx != 2){
+                console.log("Opção invalida, escolha uma opção! ");
+                console.log();
+                console.log("Você deseja abrir a caixa?");
+                console.log("[1] Sim ou [2] Não ?")
+                console.log();
+                abrirCx = +prompt("Faça sua escolha: ");
+                console.clear();
+            };
+            if(abrirCx == 1){
+                console.log(`Você acaba de encontrar uma ${cena2.caixa1[0]}, um ${cena2.caixa1[2]} e um papel com uma senha anotada...`)
+                console.log();
+                console.log("Você quer adicionar ao seu inventário?  ");
+                console.log("[1] Sim ou [2] Não ?")
+                console.log();
+                inven = +prompt("Faça sua escolha: ");
+                console.clear();
+
+                if(inven != 1 && inven != 2){
+                    console.log("Opção invalida, escolha uma opção! ");
+                    console.log();
+                    console.log("Você quer adicionar ao seu inventário?  ");
+                    console.log("[1] Sim ou [2] Não ?")
+                    console.log();
+                    inven = +prompt("Faça sua escolha: ");
+                    console.clear();
+                };
+                if(inven == 1){
+                    personagem.inventario.splice(2,1,cena2.caixa1[2]);
+                    console.log(`Você acaba de usar a ${cena2.caixa1[0]}`);
+                    console.log();
+                    personagem.recuperarVida();
+                    personagem.senhas.splice(1,1,cena2.caixa1[1]);
+                    console.log();
+                    console.log("Os itens foram adicionados ao seu inventário!")
+                    console.log();
+                    personagem.passarc2();
+                    console.log();
+                    console.log("Nome: ",personagem.nome);
+                    console.log("Inventário: ",personagem.inventario);
+                    console.log("Energia: ",personagem.energia);
+                    console.log("Vida: ",personagem.vida);
+                    console.log("Senhas: ",personagem.senhas);
+                    console.log("Tempo: ",personagem.tempo, "Minutos ");
+                    console.log();
+                    contador++;
+                    port2++;
+                    continue controle
+                }
+            }else if (abrirCx == 2){
+                prompt("Você precisa encontrar todos os itens para liberar a sala secreta! ")
+                console.log();
+                console.log("Você voltou para o inicio!");
+                continue controle
+            };
+        case 3:
+            if(port1 == 0 || port2 == 0){
+                console.log("Você precisa entrar nas outras portas para continuar...");
+                prompt("[ENTER]");
+                continue controle
+            }
+            
+            prompt("Você acaba de entrar na 3º Porta...")
+            console.clear();
+            prompt("Dentro da sala você acaba de encontrar uma caixa...");
+            console.clear();
+            console.log("Você deseja abrir a caixa?");
+            console.log("[1] Sim ou [2] Não ?")
+            console.log();
+            abrirCx = +prompt("Faça sua escolha: ");
+            console.clear();
+            if(abrirCx != 1 && abrirCx != 2){
+                console.log("Opção invalida, escolha uma opção! ");
+                console.log();
+                console.log("Você deseja abrir a caixa?");
+                console.log("[1] Sim ou [2] Não ?")
+                console.log();
+                abrirCx = +prompt("Faça sua escolha: ");
+                console.clear();
+            };
+            if(abrirCx == 1){
+                console.log(`Você acaba de encontrar uma ${cena3.caixa1[0]}, uma ${cena3.caixa1[1]} e outro papel com uma senha anotada...`)
+                console.log();
+                console.log("Você quer adicionar ao seu inventário?  ");
+                console.log("[1] Sim ou [2] Não ?")
+                console.log();
+                inven = +prompt("Faça sua escolha: ");
+                console.clear();
+                if(inven != 1 && inven != 2){
+                    console.log("Opção invalida, escolha uma opção! ");
+                    console.log();
+                    console.log("Você quer adicionar ao seu inventário?  ");
+                    console.log("[1] Sim ou [2] Não ?")
+                    console.log();
+                    inven = +prompt("Faça sua escolha: ");
+                    console.clear();
+                };
+                if(inven == 1){
+                    console.log(`Você acaba de comer a ${cena3.caixa1[0]}`);
+                    console.log();
+                    console.log(`Sua energia foi aumentada: ${personagem.energia}`);
+                    console.log();
+                    personagem.food();
+                    personagem.inventario.splice(3,1,cena3.caixa1[1]);
+                    personagem.senhas.splice(2,1,cena3.caixa1[2]);
+                    console.log();
+                    console.log("Os itens foram adicionados ao seu inventário!")
+                    console.log();
+                    personagem.passarc3();
+                    console.log();
+                    console.log("Nome: ",personagem.nome);
+                    console.log("Inventário: ",personagem.inventario);
+                    console.log("Energia: ",personagem.energia);
+                    console.log("Vida: ",personagem.vida);
+                    console.log("Senhas: ",personagem.senhas);
+                    console.log("Tempo: ",personagem.tempo, "Minutos");
+                    console.log();
+                    contador++;
+                    console.clear();
+                }
+            }else if (abrirCx == 2){
+                prompt("Você precisa encontrar todos os itens para liberar a sala secreta! ")
+                console.log();
+                console.log("Você voltou para o inicio!");
+                continue controle
+            };
+
+    };
+
+    switch (contador){
+        case 3:
+            if(contador){
+                console.log("SALA SECRETA LIBERADA!")
+                console.log();
+                prompt("PRESSIONE [ENTER]...")
+                console.clear();
+                prompt("Você acaba de entrar na sala secreta...")
+                console.clear();
+                prompt("Você precisar ter reunido todos os itens para abrir a porta secreta...")
+                console.clear();
+                prompt("Na porta você precisa digitar a senha na sequencia correta para escapar...")
+                console.clear();
+                prompt("Você tem 3 tentativas para tentar abrir a porta...")
+                console.clear();
+                prompt("Abaixo está as senhas resgatada em cada porta:");
+                console.log();
+                console.log(personagem.senhas);
+                prompt("[ENTER]...");
+            };
+                while(true){
+                    console.clear();
+                    console.log("Digite ela na sequencia correta...");
+                    console.log("**|**|**");
+                    console.log();
+
+                    console.log("Digite 1º senha...")
+                    console.log();
+                    digSenha = +prompt(": ")
+                    console.log("Senha Digitada...")
+                    senha.splice(0,1,digSenha)
+                    console.clear();
+
+                    console.log("Digite 2º senha...")
+                    console.log();
+                    digSenha = +prompt(": ")
+                    console.log("Senha Digitada...")
+                    senha.splice(1,1,digSenha)
+                    console.clear();
+
+                    console.log("Digite 3º senha...")
+                    console.log();
+                    digSenha = +prompt(": ")
+                    console.log("Senha Digitada...")
+                    senha.splice(2,1,digSenha)
+                    console.clear();
+                    if(senha[0] == verSenha[0] && senha[1] == verSenha[1] && senha[2] == verSenha[2]){
+                        console.log("Senha está correta!");
+                        console.log();
+                        console.log("PORTA DESTRAVADA...");
+                        console.log();
+                        console.log("USANDO A CHAVE PARA ABRIR A PORTA... ")
+                        console.log();
+                        console.log("PORTA ABERTA...");
+                        console.log();
+                        console.log("VOCÊ ACENDE A LANTERNA...");
+                        console.log();
+                        console.log("VOCÊ PEGA O CANIVETE...");
+                        console.log();
+                        console.log("E CHEGA ATÉ O FIM DO CORREDOR...");
+                        console.log();
+                        console.log("PARABÉNS VOCÊ CONSEGUIU ESCAPAR...");
+                        console.log();
+                        console.log("THE END!");
+                        prompt("[ENTER]");
+                        console.log();
+                        break controle
+    
+                    }else {
+                        console.log("Combinação incorreta!")
+                        personagem.senhaIncorreta();
+                        prompt("[ENTER]...");
+                        console.log();
+                    }if (personagem.tempo == 0 ){
+                        console.log("GAME OVER")
+                        console.log();
+                        console.log("VOCÊ NÃO CONSEGUIU ESCAPAR!")
+                        prompt("[ENTER]");
+                        console.log();
+                        break controle
+                    }
+                    
+                };
+                default:
+    };
+
+};
+console.log("JOGO FINALIZADO...");

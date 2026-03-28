@@ -21,6 +21,7 @@ binance-bot/
     risk/manager.py
     execution/executor.py
     core/engine.py
+  tests/
 ```
 
 ## Como rodar
@@ -38,6 +39,19 @@ pip install -r requirements.txt
 ```bash
 python -m src.main --symbol BTCUSDT --market futures --mode paper
 ```
+
+## Testes
+
+```bash
+pytest -q
+```
+
+## Melhorias aplicadas nesta versão
+
+- `TradingEngine` agora recebe o cliente de dados por injeção de dependência, facilitando testes.
+- `RiskManager` valida configuração inválida no bootstrap.
+- `OrderExecutor` rejeita ordens inválidas (`side`/`quantity`).
+- suíte inicial de testes unitários para risco e engine.
 
 ## Próximos passos
 

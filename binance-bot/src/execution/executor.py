@@ -11,9 +11,17 @@ class OrderRequest:
 
 class OrderExecutor:
     def __init__(self, mode: str = 'paper') -> None:
+        valid_modes = {'paper', 'live'}
+        if mode not in valid_modes:
+            raise ValueError(f'mode inválido: {mode}. Use um de {valid_modes}')
         self.mode = mode
 
     def execute(self, order: OrderRequest) -> dict:
+        if order.quantity <= 0:
+            return {'status': 'rejected', 'reason': 'Quantidade deve ser maior que zero'}
+        if order.side not in {'buy', 'sell'}:
+            return {'status': 'rejected', 'reason': "Lado da ordem precisa ser 'buy' ou 'sell'"}
+
         if self.mode == 'paper':
             return {
                 'status': 'simulated',

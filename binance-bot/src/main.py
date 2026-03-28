@@ -2,7 +2,8 @@ import argparse
 from pprint import pprint
 
 from src.config.settings import settings
-from src.core.engine import TradingEngine
+from src.core.engine import TradingContext, TradingEngine
+from src.data.binance_client import BinanceDataClient
 from src.execution.executor import OrderExecutor
 from src.risk.manager import RiskManager
 from src.strategy.wyckoff_stub import WyckoffStrategyStub
@@ -29,15 +30,22 @@ def main() -> None:
         max_trades_per_day=settings.max_trades_per_day,
     )
     executor = OrderExecutor(mode=args.mode)
-    engine = TradingEngine(strategy=strategy, risk_manager=risk_manager, executor=executor)
+    data_client = BinanceDataClient()
+    engine = TradingEngine(
+        strategy=strategy,
+        risk_manager=risk_manager,
+        executor=executor,
+        data_client=data_client,
+    )
 
-    result = engine.run_once(
+    context = TradingContext(
         symbol=args.symbol,
         market=args.market,
         equity=args.equity,
         daily_pnl_pct=args.daily_pnl_pct,
         trades_today=args.trades_today,
     )
+    result = engine.run_once(context)
     pprint(result)
 
 
